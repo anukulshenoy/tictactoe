@@ -32,13 +32,13 @@ var TictacToe = function () {
     game.play = function () {
         var currentPlayer = this.player2;
         var context = this;
-        while(this.gameover === false) {
-            this.renderBoard();
-            if (currentPlayer === this.player1) {
-                currentPlayer = this.player2;
+        var i = 0;
+        function ask () {
+            if (currentPlayer === context.player1) {
+                currentPlayer = context.player2;
             }
             else {
-                currentPlayer = this.player1;
+                currentPlayer = context.player1;
             }
             prompt.get([currentPlayer], function (err, result) {
                 console.log(result);
@@ -52,13 +52,21 @@ var TictacToe = function () {
                     context.board[row][column] = "O";
                 }
                 context.renderBoard();
+                //context.checkWinner(context.board);
+                i++;
+                ask();
             });
-            this.gameover = true;
+            if (i === 9) {
+                return;
+            }
         }
+            ask();
+
     };
     //see if we have a winner
     game.checkWinner = function(board) {
         //check all rows
+        this.gameover = true;
         for (var i = 0; i < board.length; i++) {
             var current = board[i][0];
             //check rows
@@ -113,7 +121,8 @@ var TictacToe = function () {
                 }
             }
         }
-    }
+            console.log(this.winner);
+    };
     return game;
 }
 
