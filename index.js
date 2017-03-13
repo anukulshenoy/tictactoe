@@ -54,6 +54,7 @@ var TictacToe = function () {
                 context.renderBoard();
                 //context.checkWinner(context.board);
                 i++;
+                game.checkWinner(context.board);
                 ask();
             });
             if (i === 9) {
@@ -66,7 +67,6 @@ var TictacToe = function () {
     //see if we have a winner
     game.checkWinner = function(board) {
         //check all rows
-        this.gameover = true;
         for (var i = 0; i < board.length; i++) {
             var current = board[i][0];
             //check rows
@@ -121,7 +121,9 @@ var TictacToe = function () {
                 }
             }
         }
-            console.log(this.winner);
+         if (this.winner) {
+             console.log(this.winner + "WINS");
+         }
     };
     return game;
 }
