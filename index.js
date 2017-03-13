@@ -31,8 +31,8 @@ var TictacToe = function () {
     }
     game.play = function () {
         var currentPlayer = this.player2;
-        //while(this.gamover === false) {
-            console.log("dsisadlkjdsh");
+        var context = this;
+        while(this.gameover === false) {
             this.renderBoard();
             if (currentPlayer === this.player1) {
                 currentPlayer = this.player2;
@@ -40,12 +40,21 @@ var TictacToe = function () {
             else {
                 currentPlayer = this.player1;
             }
-            prompt.get(['Player ' + currentPlayer + ' its your turn: '], function (err, result) {
+            prompt.get([currentPlayer], function (err, result) {
                 console.log(result);
-
-            })
-            this.gamover = true;
-        //}
+                result = result[currentPlayer].split("");
+                var row = parseInt(result[0]);
+                var column = parseInt(result[1]);
+                if (currentPlayer === context.player1) {
+                    context.board[row][column] = "X";
+                }
+                else {
+                    context.board[row][column] = "O";
+                }
+                context.renderBoard();
+            });
+            this.gameover = true;
+        }
     };
     //see if we have a winner
     game.checkWinner = function(board) {
