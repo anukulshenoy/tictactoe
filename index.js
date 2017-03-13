@@ -31,8 +31,8 @@ var TictacToe = function () {
     }
     game.play = function () {
         var currentPlayer = this.player2;
-        console.log(currentPlayer);
-        while(this.gamover === false) {
+        //while(this.gamover === false) {
+            console.log("dsisadlkjdsh");
             this.renderBoard();
             if (currentPlayer === this.player1) {
                 currentPlayer = this.player2;
@@ -44,8 +44,8 @@ var TictacToe = function () {
                 console.log(result);
 
             })
-        }
-        this.gamover = true;
+            this.gamover = true;
+        //}
     };
     //see if we have a winner
     game.checkWinner = function(board) {
